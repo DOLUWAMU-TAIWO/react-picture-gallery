@@ -36,11 +36,11 @@ const PictureDisplay = () => {
       {error && <p style={{ color: 'red' }}>Error: {error}</p>}
       {picture.url ? (
         <div className="relative shadow-lg rounded-xl overflow-hidden w-full md:w-1/2">
-          <img
-            src={picture.url}
-            alt={`Photo ID: ${picture.id}`}
-            className="w-full h-96 object-cover"
-          />
+         <img
+          src={picture.url}
+          alt={picture.id}  // Simply use the picture ID or any relevant info
+          className="w-full h-96 object-cover"
+        />
         </div>
       ) : (
         <p>No picture loaded yet.</p>
