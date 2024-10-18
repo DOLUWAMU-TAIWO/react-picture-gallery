@@ -8,7 +8,7 @@ const PictureDisplay = () => {
   // Function to fetch a random picture using fetch
   const fetchRandomPhoto = async () => {
     try {
-      const response = await fetch('https://rocky-badlands-23396-f4979b1e0bda.herokuapp.com/random', {  // Direct backend URL
+      const response = await fetch('https://rocky-badlands-23396-f4979b1e0bda.herokuapp.com/random', {
         method: 'GET',
         credentials: 'include', // Include credentials if your backend requires authentication
       });
@@ -27,32 +27,37 @@ const PictureDisplay = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 flex flex-col items-center justify-center">
-      <h1 className="text-4xl font-bold text-gray-800 mb-10">
-        Picture Gallery
-      </h1>
+    <div className="min-h-screen bg-gray-100 flex items-center justify-center">
+      <div className="container mx-auto px-4">
+        <h1 className="text-4xl font-bold text-gray-800 mb-10 text-center">
+          Picture Gallery
+        </h1>
 
-      {/* Display the picture if URL exists */}
-      {error && <p style={{ color: 'red' }}>Error: {error}</p>}
-      {picture.url ? (
-        <div className="relative shadow-lg rounded-xl overflow-hidden w-full md:w-1/2">
-         <img
-          src={picture.url}
-          alt={picture.id}  // Simply use the picture ID or any relevant info
-          className="w-full h-96 object-cover"
-        />
+        {/* Display the picture if URL exists */}
+        {error && <p className="text-red-500 text-center">Error: {error}</p>}
+        {picture.url ? (
+          <div className="relative shadow-lg rounded-xl overflow-hidden w-full max-w-screen-lg mx-auto">
+            <img
+              src={picture.url}
+              alt={`ID: ${picture.id}`}
+              className="w-full h-auto object-cover"
+              style={{ maxHeight: '80vh', borderRadius: '0.5rem' }}
+            />
+          </div>
+        ) : (
+          <p className="text-center">No picture loaded yet.</p>
+        )}
+
+        {/* Button to fetch a new random picture */}
+        <div className="flex justify-center mt-5">
+          <button
+            onClick={fetchRandomPhoto}
+            className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors duration-300"
+          >
+            Fetch Random Picture
+          </button>
         </div>
-      ) : (
-        <p>No picture loaded yet.</p>
-      )}
-
-      {/* Button to fetch a new random picture */}
-      <button
-        onClick={fetchRandomPhoto}
-        className="mt-5 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors duration-300"
-      >
-        Fetch Random Picture
-      </button>
+      </div>
     </div>
   );
 };
