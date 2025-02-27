@@ -8,7 +8,7 @@ const PictureDisplay = () => {
   // Function to fetch a random picture using fetch
   const fetchRandomPhoto = async () => {
     try {
-      const response = await fetch('https://rocky-badlands-23396-f4979b1e0bda.herokuapp.com/random', {
+      const response = await fetch('http://51.20.82.221:2132/random', {
         method: 'GET',
         credentials: 'include', // Include credentials if your backend requires authentication
       });
